@@ -35,29 +35,9 @@ void arrayList<T>::remove(int pos)
 template<class T>
 T arrayList<T>::retrieve(int pos)
 {
-	if (!isEmpty() && (pos >= 0 && Pos < m_count)) 
+	if (!isEmpty() && (pos >= 0 && pos < m_count)) 
 	{
 		return m_list[pos];
 	}
 	return T();
-}
-
-int main() 
-{
-	arrayList<int>* list = new arrayList<int>(100);
-
-	list->insert(0, 1);
-	list->insert(1, 2);
-	list->insert(2, 4);
-	list->insert(1, 5);
-
-	cout << list->retrieve(0);
-	cout << list->retrieve(1);
-	cout << list->retrieve(2);
-	cout << list->retrieve(3) << "\n";
-	list->remove(1);
-
-	cout << list->retrieve(0);
-	cout << list->retrieve(1);
-	cout << list->retrieve(2);
 }

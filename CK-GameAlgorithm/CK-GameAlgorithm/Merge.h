@@ -8,20 +8,21 @@ public:
 	Merge(int Max = 100) :Sort<T>(Max) {}
 
 	void sorting() override;
-	void mergesort(T* data, int first, int last);
-	void merge(T* data, int first, int middle, int last);
+	void mergesort(T* sorted, T* data, int first, int last);
+	void merge(T* sorted, T* data, int first, int middle, int last);
 };
 
 template <class T>
-void Merge<T>::mergesort(T *data, int first, int last) 
+void Merge<T>::mergesort(T* sorted, T *data, int first, int last) 
 {
 	if (first < last) 
 	{
+		int N = this->getSize();
 		int middle = (first + last) / 2;
 
-		mergesort(data, first, middle);
-		mergesort(data, middle + 1, last);
-		merge(data, first, middle, last);
+		mergesort(sorted, data, first, middle);
+		mergesort(sorted, data, middle + 1, last);
+		merge(sorted, data, first, middle, last);
 	}
 }
 
@@ -30,15 +31,17 @@ void Merge<T>::sorting()
 {
 	int N = this->getSize();
 	T* data = this->getData();
+	T* sorted = new T[N];
 
-	mergesort(data, 0, N-1);
+	mergesort(sorted, data, 0, N-1);
+
+	delete[] sorted;
 }
 
 template <class T>
-void Merge<T>::merge(T* data, int f, int m, int l)
+void Merge<T>::merge(T* sorted, T* data, int f, int m, int l)
 {
 	int N = this->getSize();
-	T* sorted = new T[N];
 	
 	int first1 = f;
 	int last1 = m;

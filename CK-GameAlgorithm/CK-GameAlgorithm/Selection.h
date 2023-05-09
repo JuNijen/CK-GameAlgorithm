@@ -25,7 +25,7 @@ void Selection<T>::sorting()
 			{
 				largestIndex = cur;
 			}
-			swap(data[last], data[largestIndex]);
 		}
+		swap(data[last], data[largestIndex]);
 	}
 }
